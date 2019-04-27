@@ -1,17 +1,22 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <Todos v-bind:todos="todos"/>
+    <Header/>
+    <AddTodo v-on:add-todo="addTodo"/>
+    <Todos v-bind:todos="todos" v-on:del-todo="deleteTodo"/>
   </div>
 </template>
 
 <script>
 import Todos from './components/Todos.vue'
+import AddTodo from './components/AddTodo.vue'
+import Header from './components/layout/Header.vue'
 
 export default {
   name: 'app',
   components: {
-    Todos
+    Todos,
+    AddTodo,
+    Header
   },
   data() {
     return {
@@ -33,17 +38,28 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    deleteTodo(id) {
+      this.todos = this.todos.filter(todo => todo.id != id);
+    },
+    addTodo(newTodo) {
+      this.todos = [...this.todos, newTodo]
+    }
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+.container {
+  width: 50% !important;
+  margin: 0 auto !important;
 }
 </style>
