@@ -1,30 +1,39 @@
 <template>
-    <div class="todo-item">
-        <p>{{ todo.title }}</p>
+    <div class="todo-item box" v-bind:class="{'is-complete':todo.completed}">
+        <h4 class="subtitle is-4">
+            <input type="checkbox" v-on:change="markComplete">
+            {{ todo.title }}
+            <button @click="$emit('del-todo', todo.id)" class="delete del" aria-label="delete"></button>
+        </h4>
   </div>
 </template>
 
 <script>
 export default {
   name: 'TodoItem',
-  props: ["todo"]
+  props: ["todo"],
+  methods: {
+      markComplete() {
+          this.todo.completed = !this.todo.completed;
+      }
+
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.todo-item {
+    padding: 30px;
+    margin: 10px;
+    border-bottom: 1px solid #ccc;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+
+.is-complete {
+    text-decoration: line-through;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+
+.delete {
+    vertical-align: middle;
 }
 </style>
