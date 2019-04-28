@@ -3,7 +3,7 @@
         <form class="level" @submit="addTodo">
             <div class="field level-left">
                 <div class="control level-item">
-                    <input class="input is-large" type="text" name="task" placeholder="Add Task.." v-model="title">
+                    <input class="input is-large" type="text" name="task" placeholder="Add Task.." v-model="title" required>
                 </div>
             </div>
             <div class="field level-right">

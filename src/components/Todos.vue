@@ -1,7 +1,10 @@
 <template>
-  <div class="container box">
-    <div v-bind:key="todo.id" v-for="todo in todos">
-      <TodoItem v-bind:todo="todo" v-on:del-todo="$emit('del-todo', todo.id)"/>
+  <div class="container">
+    <h1 class="title box">Your Tasks For Today</h1>
+    <div class="box">
+      <div v-bind:key="todo.id" v-for="todo in todos">
+        <TodoItem v-bind:todo="todo" v-on:del-todo="$emit('del-todo', todo.id)"/>
+      </div>
     </div>
   </div>
 </template>
